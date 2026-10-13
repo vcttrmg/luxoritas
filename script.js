@@ -1,7 +1,7 @@
 const imageBase = 'https://raw.githubusercontent.com/contactlovarne-ai/Luxorita-/main';
 
 const products = [
-    { name: 'Pure 24K Pink Gold Brooch, Handcrafted framework exquisitely set with natural unheated diamonds', price: 'Contact for Price', image: `${imageBase}/IMG-20261001-WA0000.jpg`, description: 'A romantic pink-gold brooch inspired by classical filigree, set with colorless natural unheated diamonds for a soft, luminous effect.' },
+    { name: 'Pure 24K Pink Gold Brooch, price: 'Contact for Price', image: `${imageBase}/IMG-20261001-WA0000.jpg`, description: 'A romantic pink-gold brooch inspired by classical filigree, set with colorless natural unheated diamonds for a soft, luminous effect.' },
     { name: 'Pure 24K White Gold Brooch, Handcrafted framework exquisitely set with natural unheated diamonds', price: 'Contact for Price', image: `${imageBase}/IMG-20261001-WA0001.jpg`, description: 'Sculpted in pure white 24K gold, this brooch pairs architectural lines with brilliant natural stones for modern elegance.' },
     { name: 'Pure 24K Pink Gold Brooch, Handcrafted framework exquisitely set with natural unheated diamonds', price: 'Contact for Price', image: `${imageBase}/IMG-20261001-WA0002.jpg`, description: 'Delicate pink-gold petals surround a subtle cluster of unheated diamonds — a collector’s piece with heirloom character.' },
     { name: 'Pure 24K Black Gold Brooch, Handcrafted framework exquisitely set with natural unheated diamonds', price: 'Contact for Price', image: `${imageBase}/IMG-20261001-WA0009.jpg`, description: 'Bold and dramatic, the blackened 24K gold finish creates contrast that highlights each diamond’s clarity.' },
