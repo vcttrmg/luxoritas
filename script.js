@@ -136,27 +136,56 @@ function submitOrder(event) {
     const productPrice = window.currentOrder ? window.currentOrder.productPrice : 'Contact for Price';
     const orderType = window.currentOrder ? window.currentOrder.type : 'inquiry';
 
-    const messageTitle = orderType === 'checkout' ? 'PAYMENT SUBMITTED SUCCESSFULLY' : 'INQUIRY SUBMITTED SUCCESSFULLY';
+    const subject = encodeURIComponent(`Luxorita ${orderType === 'checkout' ? 'Order' : 'Inquiry'}: ${productName}`);
 
-    const inquiryMessage = `
-✓ ${messageTitle}
+    const bodyLines = [
+        `Product: ${productName}`,
+        `Price: ${productPrice}`,
+        '',
+        'Customer details:',
+        `Name: ${buyerName}`,
+        `Email: ${buyerEmail}`,
+        `Phone: ${buyerPhone}`,
+        `Address: ${buyerAddress}`,
+        '',
+        `Order type: ${orderType}`,
+        '',
+        'Sent from Luxorita website.'
+    ];
 
-Product: ${productName}
-Price: ${productPrice}
+    const body = encodeURIComponent(bodyLines.join('\n'));
 
-Customer details:
-Name: ${buyerName}
-Email: ${buyerEmail}
-Phone: ${buyerPhone}
-Address: ${buyerAddress}
+    // Primary: open user's email client via mailto: so the message is sent from the customer's email to site owner
+    const to = 'contactluxorita@gmail.com';
+    const mailto = `mailto:${to}?subject=${subject}&body=${body}`;
 
-${orderType === 'checkout' ? 'Your payment is being processed. Please remain on this website while the transaction is completed.' : 'Your request is being reviewed in the Luxorita inquiry flow. Please wait for the confirmation message from the team.'}
+    // Attempt to open mail client
+    window.location.href = mailto;
 
-Thank you for your interest in our collection.
-    `;
+    // As a fallback for users without a configured mail client, create a downloadable .eml file so they can send manually
+    setTimeout(() => {
+        const emlHeaders = [];
+        emlHeaders.push(`To: ${to}`);
+        emlHeaders.push(`Subject: ${decodeURIComponent(subject)}`);
+        emlHeaders.push('Content-Type: text/plain; charset="utf-8"');
+        emlHeaders.push('');
+        const emlContent = emlHeaders.join('\n') + '\n' + decodeURIComponent(body);
 
-    alert(inquiryMessage);
-    closeCheckout();
+        const blob = new Blob([emlContent], { type: 'message/rfc822' });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `luxorita-${productName.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.eml`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        alert('If your email client did not open automatically, a file has been downloaded which you can attach to an email addressed to contactluxorita@gmail.com.');
+
+        closeCheckout();
+    }, 500);
 }
 
 window.onclick = function (event) {
