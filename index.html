@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxorita — High Jewelry Masterworks</title>
-    <meta name="description" content="Luxorita High Jewelry — 24K Gold and Natural Diamonds." />
+    <meta name="description" content="Luxorita High Jewelry — 24K Gold and Natural Diamonds. Exquisite, handcrafted pieces designed for collectors." />
+    <meta name="robots" content="index,follow">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 </head>
@@ -26,6 +27,18 @@
 
         <main class="catalog-wrapper">
             <section id="catalog-page" class="page-content active">
+                <div class="catalog-controls">
+                    <label for="category-filter">Filter by category:</label>
+                    <select id="category-filter" aria-label="Filter products by category">
+                        <option value="All">All</option>
+                        <option value="Brooch">Brooch</option>
+                        <option value="Bracelet">Bracelet</option>
+                        <option value="Ring">Ring</option>
+                        <option value="Earring">Earring</option>
+                        <option value="Necklace">Necklace</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
                 <section class="product-grid" id="product-grid" aria-label="Luxury jewelry catalog"></section>
             </section>
 
@@ -63,6 +76,7 @@
                     <div id="checkout-product" class="checkout-item">
                         <img id="checkout-image" src="" alt="">
                         <h3 id="checkout-title"></h3>
+                        <p id="checkout-description"></p>
                         <p id="checkout-price">Contact for Price</p>
                     </div>
 
